@@ -1,0 +1,51 @@
+{
+  "name": "genpark-multimodal-pdf-contract-clause-risk-auditor-skill",
+  "version": "1.0.0",
+  "description": "Enterprise Multi-Modal Contract Clause Risk Auditor & Redline Synthesizer. Scans enterprise MSAs, NDAs, and Vendor SOWs in Tencent Docs, detects high-risk clauses (unlimited indemnity, one-sided IP assignment, perpetual non-compete, evergreen auto-renewal traps), calculates composite risk scores, and generates precise legal redlines.",
+  "tools": [
+    {
+      "name": "audit_contract_clause_risks",
+      "description": "Segment contract clauses, evaluate legal risk heuristics (indemnity, IP, termination, auto-renewal), compute compliance risk score, and generate redline revisions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "audit_contract_risks",
+              "generate_redlines",
+              "calculate_risk_score"
+            ],
+            "description": "Contract audit action."
+          },
+          "contract_text": {
+            "type": "string",
+            "description": "Raw text of contract or agreement."
+          },
+          "contract_type": {
+            "type": "string",
+            "enum": [
+              "NDA",
+              "MSA",
+              "SOW",
+              "VENDOR_AGREEMENT"
+            ],
+            "description": "Category of legal contract."
+          },
+          "max_acceptable_risk": {
+            "type": "string",
+            "enum": [
+              "STRICT",
+              "STANDARD",
+              "LENIENT"
+            ],
+            "description": "Risk posture threshold."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
